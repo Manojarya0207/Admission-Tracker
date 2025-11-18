@@ -43,7 +43,7 @@ as part of the official project work assigned by:
 
 ### **Frontend**
 - Flutter (Dart)
-- Provider / Riverpod / Bloc (choose your architecture)
+- Provider 
 - Material UI
 
 ### **Backend**
@@ -57,6 +57,6 @@ as part of the official project work assigned by:
 
 ### **1️⃣ Clone the repository**
 ```bash
-git clone https://github.com/your-username/Admission-Tracker.git
+git clone https://github.com/Manojarya0207/Admission-Tracker.git
 cd Admission-Tracker
 
