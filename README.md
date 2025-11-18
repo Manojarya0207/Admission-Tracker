@@ -26,17 +26,10 @@ This application has been developed for:
 
 as part of the official project work assigned by:
 
-- **Principal**
-- **Faculty Members / Teachers**
+- **Principal Sir**
+- **Aishwarya Man**
 
 ## ✨ Features  
-
-### 📝 Student Features  
-- Submit admission form  
-- Upload required documents (PDF/Images)  
-- Track application status (Pending → Verified → Approved)  
-- Edit details before verification  
-
 ### 🧑‍💼 Admin/Staff Features  
 - Dashboard for all admission applications  
 - Verify and approve students  
