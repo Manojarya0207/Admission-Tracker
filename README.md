@@ -1,6 +1,7 @@
 <p align="center">
   <img src="https://github.com/user-attachments/assets/33b4737b-1fb1-40b8-8016-de7b827bd05d" width="180" alt="App Logo">
 </p>
+
 # 🎓 Admission Tracker  
 A mobile application built with **Flutter** and **Firebase** for managing student admissions at **GTTC Magadi**.
 
