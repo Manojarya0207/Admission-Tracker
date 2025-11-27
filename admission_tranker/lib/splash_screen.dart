@@ -22,11 +22,42 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.white,   // White looks better with your logo
       body: Center(
-        child: Text(
-          "Admission Tracker",
-          style: TextStyle(fontSize: 28, color: Colors.white),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            
+            // 🔵 College Logo
+            Image.asset(
+              "assets/images/gttc_logo.jpg",
+              height: 150,
+            ),
+
+            SizedBox(height: 20),
+
+            // 🔵 App Title
+            Text(
+              "Admission Tracker",
+              style: TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+                color: Colors.blue,
+              ),
+            ),
+
+            SizedBox(height: 10),
+
+            // 🔵 College Name
+            Text(
+              "GTTC MAGADI",
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.grey[800],
+                letterSpacing: 1,
+              ),
+            ),
+          ],
         ),
       ),
     );
