@@ -6,6 +6,8 @@ void main() {
 }
 
 class AdmissionApp extends StatelessWidget {
+  const AdmissionApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
