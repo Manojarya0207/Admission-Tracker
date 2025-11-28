@@ -4,173 +4,218 @@ import 'teacher/teacher_dashboard.dart';
 
 class LoginPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+  bool isLoading = false;
 
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  String selectedRole = "Principal"; // default role
+  String selectedRole = "Principal";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.blue.shade100,
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 28.0),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+            padding: const EdgeInsets.all(22.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
 
-                  // 🔵 App Title
-                  Text(
-                    "Admission Tracker Login",
-                    style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.w800,
-                      color: Colors.blue.shade700,
-                      letterSpacing: 1.5,
-                      shadows: [
-                        Shadow(
-                          offset: Offset(2, 2),
-                          blurRadius: 6,
-                          color: Colors.black26,
-                        )
-                      ],
+                // 🔵 College Logo
+                Container(
+                  height: 120,
+                  width: 120,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/gttc_logo.jpg"),
+                      fit: BoxFit.cover,
                     ),
-                    textAlign: TextAlign.center,
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 15,
+                        spreadRadius: 3,
+                        color: Colors.black26,
+                        offset: Offset(3, 3),
+                      )
+                    ],
                   ),
+                ),
 
-                  SizedBox(height: 40),
+                SizedBox(height: 20),
 
-                  // 🔵 Username Field
-                  TextFormField(
-                    controller: usernameController,
-                    decoration: InputDecoration(
-                      labelText: "Username",
-                      prefixIcon: Icon(Icons.person),
-                      filled: true,
-                      fillColor: Colors.blue.shade50,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) return "Enter Username";
-                      if (value.length < 4) return "Minimum 4 characters";
-                      return null;
-                    },
+                Text(
+                  "Admission Tracker",
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.w800,
+                    color: Colors.blue.shade900,
+                    letterSpacing: 1.5,
                   ),
+                ),
 
-                  SizedBox(height: 20),
+                SizedBox(height: 35),
 
-                  // 🔵 Password Field
-                  TextFormField(
-                    controller: passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      labelText: "Password",
-                      prefixIcon: Icon(Icons.lock),
-                      filled: true,
-                      fillColor: Colors.blue.shade50,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) return "Enter Password";
-                      if (value.length < 6) return "Password must be at least 6 characters";
-                      return null;
-                    },
+                // 🟣 Glassmorphic Login Card
+                Container(
+                  padding: EdgeInsets.all(25),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.85),
+                    borderRadius: BorderRadius.circular(25),
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 15,
+                        color: Colors.black26,
+                        offset: Offset(4, 4),
+                      )
+                    ],
                   ),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
 
-                  SizedBox(height: 25),
-
-                  // 🔵 Role Dropdown
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12),
-                    decoration: BoxDecoration(
-                      color: Colors.blue.shade50,
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: Colors.blue.shade200),
-                    ),
-                    child: DropdownButton<String>(
-                      value: selectedRole,
-                      isExpanded: true,
-                      underline: SizedBox(),
-                      items: ["Principal", "Teacher"]
-                          .map((e) => DropdownMenuItem(
-                                value: e,
-                                child: Text(e),
-                              ))
-                          .toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          selectedRole = value!;
-                        });
-                      },
-                    ),
-                  ),
-
-                  SizedBox(height: 30),
-
-                  // 🔵 Login Button (Animated)
-                  InkWell(
-                    onTap: () {
-                      if (_formKey.currentState!.validate()) {
-                        if (selectedRole == "Principal") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => PrincipalDashboard()),
-                          );
-                        } else {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => TeacherDashboard()),
-                          );
-                        }
-                      }
-                    },
-                    child: Container(
-                      height: 55,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        gradient: LinearGradient(
-                          colors: [Colors.blue, Colors.lightBlueAccent],
+                        // Username
+                        TextFormField(
+                          controller: usernameController,
+                          decoration: InputDecoration(
+                            labelText: "Username",
+                            prefixIcon: Icon(Icons.person, color: Colors.blue),
+                            filled: true,
+                            fillColor: Colors.blue.shade50,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) return "Enter Username";
+                            if (value.length < 4) return "Minimum 4 characters";
+                            return null;
+                          },
                         ),
-                        boxShadow: [
-                          BoxShadow(
-                            offset: Offset(4, 4),
-                            blurRadius: 8,
-                            color: Colors.black26,
-                          )
-                        ],
-                      ),
-                      child: Center(
-                        child: Text(
-                          "LOGIN",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1.2,
-                            color: Colors.white,
+
+                        SizedBox(height: 18),
+
+                        // Password
+                        TextFormField(
+                          controller: passwordController,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            labelText: "Password",
+                            prefixIcon: Icon(Icons.lock, color: Colors.blue),
+                            filled: true,
+                            fillColor: Colors.blue.shade50,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) return "Enter Password";
+                            if (value.length < 6) return "Password too short";
+                            return null;
+                          },
+                        ),
+
+                        SizedBox(height: 18),
+
+                        // Role Dropdown
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 12),
+                          decoration: BoxDecoration(
+                            color: Colors.blue.shade50,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: DropdownButton(
+                            value: selectedRole,
+                            isExpanded: true,
+                            underline: SizedBox(),
+                            items: [
+                              DropdownMenuItem(
+                                value: "Principal",
+                                child: Text("Principal"),
+                              ),
+                              DropdownMenuItem(
+                                value: "Teacher",
+                                child: Text("Teacher"),
+                              )
+                            ],
+                            onChanged: (value) {
+                              setState(() => selectedRole = value!);
+                            },
                           ),
                         ),
-                      ),
+
+                        SizedBox(height: 25),
+
+                        // 💙 Login Button With Loader
+                        InkWell(
+                          onTap: () async {
+                            if (_formKey.currentState!.validate()) {
+                              setState(() => isLoading = true);
+
+                              await Future.delayed(Duration(seconds: 2));
+
+                              setState(() => isLoading = false);
+
+                              if (selectedRole == "Principal") {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => PrincipalDashboard()));
+                              } else {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => TeacherDashboard()));
+                              }
+                            }
+                          },
+                          child: Container(
+                            height: 55,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(18),
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.blue.shade700,
+                                  Colors.lightBlueAccent,
+                                ],
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 10,
+                                  color: Colors.blue.shade300,
+                                  offset: Offset(3, 3),
+                                )
+                              ],
+                            ),
+                            child: Center(
+                              child: isLoading
+                                  ? CircularProgressIndicator(
+                                      color: Colors.white,
+                                    )
+                                  : Text(
+                                      "LOGIN",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
+                ),
 
-                  SizedBox(height: 20),
-
-                ],
-              ),
+                SizedBox(height: 30),
+              ],
             ),
           ),
         ),
