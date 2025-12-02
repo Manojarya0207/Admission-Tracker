@@ -3,7 +3,7 @@
 </p>
 
 # 🎓 Admission Tracker  
-A mobile application built with **Flutter** and **Firebase** for managing student admissions at **GTTC Magadi**.
+A mobile application built with **Flutter** and **Firebase** for managing student admissions at **GTTC Magadi**. 
 
 This project was assigned by **Principal** and **Faculty Members** of GTTC Magadi as part of an initiative to digitize the admission process and reduce manual paperwork.
 
