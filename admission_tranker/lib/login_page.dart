@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'principal/principal_dashboard.dart';
-import 'teacher/teacher_dashboard.dart';
+import 'principal/principal_page.dart';
+import 'teacher/teacher_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Modern Gradient Background
+      // Background Gradient
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -97,8 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                             keyboardType: TextInputType.phone,
                             decoration: InputDecoration(
                               labelText: "Phone Number",
-                              prefixIcon:
-                                  Icon(Icons.phone, color: Colors.blue),
+                              prefixIcon: Icon(Icons.phone, color: Colors.blue),
                               filled: true,
                               fillColor: Colors.blue.shade50,
                               border: OutlineInputBorder(
@@ -107,8 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             validator: (value) {
                               if (value!.isEmpty) return "Enter phone number";
-                              if (value.length != 10)
-                                return "Phone number must be 10 digits";
+                              if (value.length != 10) return "Phone number must be 10 digits";
                               return null;
                             },
                           ),
@@ -121,8 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                             obscureText: true,
                             decoration: InputDecoration(
                               labelText: "Password",
-                              prefixIcon:
-                                  Icon(Icons.lock, color: Colors.blue),
+                              prefixIcon: Icon(Icons.lock, color: Colors.blue),
                               filled: true,
                               fillColor: Colors.blue.shade50,
                               border: OutlineInputBorder(
@@ -131,8 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             validator: (value) {
                               if (value!.isEmpty) return "Enter password";
-                              if (value.length < 6)
-                                return "Password must be at least 6 characters";
+                              if (value.length < 6) return "Password must be at least 6 characters";
                               return null;
                             },
                           ),
@@ -171,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
 
                           SizedBox(height: 28),
 
-                          // Login Button With Loader
+                          // Login Button
                           InkWell(
                             onTap: () async {
                               if (_formKey.currentState!.validate()) {
@@ -181,19 +177,23 @@ class _LoginPageState extends State<LoginPage> {
 
                                 setState(() => isLoading = false);
 
+                                // Correct navigation
                                 if (selectedRole == "Principal") {
                                   Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (_) =>
-                                              PrincipalDashboard()));
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => PrincipalPage(),
+                                    ),
+                                  );
                                 } else {
                                   Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (_) => TeacherDashboard()));
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => TeacherPage(),
+                                    ),
+                                  );
                                 }
-                              } 
+                              }
                             },
                             child: Container(
                               height: 55,
@@ -215,9 +215,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               child: Center(
                                 child: isLoading
-                                    ? CircularProgressIndicator(
-                                        color: Colors.white,
-                                      )
+                                    ? CircularProgressIndicator(color: Colors.white)
                                     : Text(
                                         "LOGIN",
                                         style: TextStyle(
