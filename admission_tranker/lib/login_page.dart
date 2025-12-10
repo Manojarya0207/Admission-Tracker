@@ -193,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
                                       MaterialPageRoute(
                                           builder: (_) => TeacherDashboard()));
                                 }
-                              }
+                              } 
                             },
                             child: Container(
                               height: 55,
