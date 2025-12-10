@@ -70,40 +70,7 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
 
                 SizedBox(height: 20),
-
-                // 🔵 College Name (Beautiful Modern Design)
-                Column(
-                  children: [
-                    Text(
-                      "GTTC MAGADI",
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: 2,
-                        color: Colors.blue.shade800,
-                        shadows: [
-                          Shadow(
-                            blurRadius: 8,
-                            color: Colors.black26,
-                            offset: Offset(2, 2),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    SizedBox(height: 5),
-
-                    // 🔵 Underline Design
-                    Container(
-                      width: 120,
-                      height: 4,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                    )
-                  ],
-                ),
+               
               ],
             ),
           ),
