@@ -14,7 +14,7 @@ Admission Tracker simplifies the entire admission workflow:
 
 - Collect student details  
 - Upload documents  
-- Check application status  
+- Check application status      
 - Verify and approve admissions  
 - Maintain a digital database of applicants  
 
